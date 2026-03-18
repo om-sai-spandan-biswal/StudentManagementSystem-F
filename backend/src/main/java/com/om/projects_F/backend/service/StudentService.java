@@ -32,7 +32,6 @@ public class StudentService {
 
     public StudentDTO createStudent(StudentDTO studentDTO) {
         Student student = studentMapper.toEntity(studentDTO) ;
-        student.setDeleted(false);
         Student createdStudent = studentRepository.save(student) ;
         return studentMapper.toDTO(createdStudent) ;
     }

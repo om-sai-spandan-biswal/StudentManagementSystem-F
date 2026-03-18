@@ -44,6 +44,6 @@ public class Student {
     @UpdateTimestamp
     private LocalDateTime updatedAt ;
 
-    private Boolean deleted ; //for soft delete
+    private Boolean deleted = false; //for soft delete
 
 }
