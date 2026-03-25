@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(
+        uniqueConstraints = @UniqueConstraint(name = "student_course_unique", columnNames = {"student_id","course_id"})
+)
 public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,6 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -24,4 +28,7 @@ public class CourseDTO {
     private Integer credit ;
 
     private String department ;
+
+    private LocalDateTime createdAt ;
+    private LocalDateTime updatedAt ;
 }

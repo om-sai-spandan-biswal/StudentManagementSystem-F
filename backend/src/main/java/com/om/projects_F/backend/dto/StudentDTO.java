@@ -4,6 +4,8 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -22,12 +24,15 @@ public class StudentDTO {
     private String email ;
 
     @NotNull(message = "You must provide contact number")
-    @Pattern(regexp = "^\\d{10}$", message = "Please provide a Valid Mobile Number")
-    private Long contactNumber ;
+    @Pattern(regexp = "\\d{10}", message = "Please Provide Valid Mobile number")
+    private String contactNumber ;
 
     @NotNull
     @Past
     private LocalDateTime dateOfBirth ;
 
     private String department ;
+
+    private LocalDateTime createdAt ;
+    private LocalDateTime updatedAt ;
 }

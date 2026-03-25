@@ -2,6 +2,7 @@ package com.om.projects_F.backend.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class Student {
     private String email ;
 
     @Column(nullable = false)
-    private Long contactNumber ;
+    private String contactNumber ;
 
     @Column(nullable = false)
     private LocalDateTime dateOfBirth ;
