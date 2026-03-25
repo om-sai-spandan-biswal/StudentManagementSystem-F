@@ -8,6 +8,10 @@ import com.om.projects_F.backend.mapper.StudentMapper;
 import com.om.projects_F.backend.repository.EnrollmentRepository;
 import com.om.projects_F.backend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,6 +23,7 @@ public class StudentService {
     private final StudentRepository studentRepository ;
     private final StudentMapper studentMapper ;
     private final EnrollmentRepository enrollmentRepository ;
+    final int PASE_SIZE = 5 ;
 
 
 
@@ -28,8 +33,15 @@ public class StudentService {
         return studentMapper.toDTO(student) ;
     }
 
-    public List<StudentDTO> getAllStudent() {
-        List<Student> students = studentRepository.findAll() ;
+    public List<StudentDTO> getAllStudent(String name, Integer pageNumber,String sortBy, String sortDirection) {
+        Pageable pageable = PageRequest.of(
+                pageNumber,
+                PASE_SIZE,
+                Sort.by(Sort.Direction.valueOf(sortDirection), sortBy)
+        );
+
+        Page<Student> studentPages = studentRepository.findByNameStartingWithIgnoreCase(name,pageable) ;
+        List<Student> students = studentPages.getContent() ;
         return students
                 .stream()
                 .map(student -> {

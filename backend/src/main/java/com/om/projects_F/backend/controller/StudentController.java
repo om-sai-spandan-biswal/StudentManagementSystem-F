@@ -27,8 +27,13 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentDTO>> getAllStudent() {
-        List<StudentDTO> studentDTOList = studentService.getAllStudent() ;
+    public ResponseEntity<List<StudentDTO>> getAllStudent(
+            @RequestParam(defaultValue = "") String name ,
+            @RequestParam(defaultValue = "0") Integer pageNumber,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "ASC") String sortDirection
+            ) {
+        List<StudentDTO> studentDTOList = studentService.getAllStudent(name,pageNumber,sortBy,sortDirection) ;
         return ResponseEntity.ok(studentDTOList) ;
     }
 
